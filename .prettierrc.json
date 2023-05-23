@@ -10,6 +10,8 @@
 	"tabWidth": 4,
 	"trailingComma": "es5",
 	"useTabs": true,
+	"svelteAllowShorthand": true,
+	"svelteIndentScriptAndStyle": false,
 	"plugins": ["prettier-plugin-svelte"],
 	"pluginSearchDirs": ["."],
 	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]

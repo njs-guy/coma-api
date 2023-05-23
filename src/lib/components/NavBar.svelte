@@ -1,9 +1,9 @@
 <script lang="ts">
-	import NavLink from "$lib/components/NavLink.svelte";
+import NavLink from "$lib/components/NavLink.svelte";
 
-	// Define href's here
-	const homeHref = "/";
-	const otherHref = "/other";
+// Define href's here
+const homeHref = "/";
+const otherHref = "/other";
 </script>
 
 <div

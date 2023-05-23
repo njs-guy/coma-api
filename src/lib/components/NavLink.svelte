@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { page, setPageStore } from "$lib/stores/pageStore";
+import { page, setPageStore } from "$lib/stores/pageStore";
 
-	let currentPage: string;
-	page.subscribe((value) => {
-		currentPage = value;
-	});
+let currentPage: string;
+page.subscribe((value) => {
+	currentPage = value;
+});
 
-	export let href: string;
-	export let label: string;
+export let href: string;
+export let label: string;
 </script>
 
 <a

@@ -1,17 +1,17 @@
 <script lang="ts">
-	// TODO: Delete this boilerplate.
+// TODO: Delete this boilerplate.
 
-	import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/tauri";
 
-	let name = "";
-	let greetMsg = "";
-	async function greet() {
-		// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-		greetMsg = await invoke("greet", { name });
-	}
+let name = "";
+let greetMsg = "";
+async function greet() {
+	// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+	greetMsg = await invoke("greet", { name });
+}
 
-	export let msg: string;
-	let count = 0;
+export let msg: string;
+let count = 0;
 </script>
 
 <main>
@@ -83,11 +83,11 @@
 </main>
 
 <style scoped>
-	code {
-		@apply bg-base-300;
-	}
+code {
+	@apply bg-base-300;
+}
 
-	.read-the-docs {
-		@apply text-accent;
-	}
+.read-the-docs {
+	@apply text-accent;
+}
 </style>
