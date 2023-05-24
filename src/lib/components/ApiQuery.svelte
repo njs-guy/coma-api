@@ -16,6 +16,7 @@ function getRequest(url: string) {
 			updateResponseStore(data);
 		})
 		.catch(function (error: string) {
+			updateResponseStore(error);
 			console.error("Error: " + error);
 		});
 }
