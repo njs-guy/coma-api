@@ -5,8 +5,10 @@ import ApiViewer from "$lib/components/ApiViewer.svelte";
 
 <main>
 	<!-- <h1>Api viewer</h1> -->
-	<ApiQuery />
-	<ApiViewer />
+	<div class="main-content flex flex-col gap-4 p-2">
+		<ApiQuery />
+		<ApiViewer />
+	</div>
 </main>
 
 <style scoped>
