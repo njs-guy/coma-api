@@ -1,24 +1,22 @@
 <script lang="ts">
 import { updateResponseStore } from "$lib/stores/responseStore";
+import axios from "axios";
 
 let requestInput: string;
 
-function getRequest(url: string) {
-	fetch(url)
-		.then(function (res: Response) {
-			if (res.ok) {
-				return res.text();
-			}
-			throw new Error("Response was not OK.");
-		})
-		.then(function (data) {
-			console.log(data);
-			updateResponseStore(data);
-		})
-		.catch(function (error: string) {
-			updateResponseStore(error);
-			console.error("Error: " + error);
+async function getRequest(url: string) {
+	try {
+		const response = await axios({
+			method: "get",
+			url: url,
+			responseType: "text",
 		});
+		console.log(response.data);
+		updateResponseStore(response.data);
+	} catch (error) {
+		console.error(error);
+		updateResponseStore(String(error));
+	}
 }
 </script>
 
