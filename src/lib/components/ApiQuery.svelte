@@ -1,18 +1,21 @@
 <script lang="ts">
-let requestInput: String;
+import { updateResponseStore } from "$lib/stores/responseStore";
 
-function getRequest(url: String) {
-	fetch(url as RequestInfo)
-		.then(function (res) {
+let requestInput: string;
+
+function getRequest(url: string) {
+	fetch(url)
+		.then(function (res: Response) {
 			if (res.ok) {
-				return res.json();
+				return res.text();
 			}
 			throw new Error("Response was not OK.");
 		})
 		.then(function (data) {
 			console.log(data);
+			updateResponseStore(data);
 		})
-		.catch(function (error) {
+		.catch(function (error: string) {
 			console.error("Error: " + error);
 		});
 }
