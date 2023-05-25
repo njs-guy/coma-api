@@ -1,15 +1,23 @@
 <script lang="ts">
 import ApiQuery from "$lib/components/ApiQuery.svelte";
-import ApiViewer from "$lib/components/ApiViewer.svelte";
+import ApiResponse from "$lib/components/ApiResponse.svelte";
 </script>
 
 <main>
-	<!-- <h1>Api viewer</h1> -->
-	<div class="main-content flex flex-col gap-4 p-2">
-		<ApiQuery />
-		<ApiViewer />
+	<div class="main-content">
+		<div class="flex-grow">
+			<ApiQuery />
+		</div>
+		<div class="flex-grow">
+			<ApiResponse />
+		</div>
 	</div>
 </main>
 
 <style scoped>
+.main-content {
+	@apply flex flex-row gap-4 p-2;
+	height: 100vh;
+	margin: 0 auto;
+}
 </style>

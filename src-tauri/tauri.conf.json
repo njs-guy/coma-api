@@ -59,7 +59,7 @@
     },
     "windows": [
       {
-        "width": 800,
+        "width": 1000,
         "height": 700,
         "title": "Api Viewer",
         "fullscreen": false,
