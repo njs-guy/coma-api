@@ -1,16 +1,23 @@
 <script lang="ts">
 import { responseStore } from "$lib/stores/responseStore";
+import {
+	responseStatusStore,
+	responseTimeStore,
+	responseSizeStore,
+} from "$lib/stores/responseStatusStore";
 
 let responseText: string;
+let responseStatus: string;
 
 responseStore.subscribe((value) => (responseText = value));
+responseStatusStore.subscribe((value) => (responseStatus = value));
 </script>
 
-<main class="flex flex-col gap-2">
+<main class="flex-grow">
 	<div class="flex flex-row flex-grow justify-end gap-1">
 		<div class="flex flex-row gap-1">
 			<p class="info-title">Status</p>
-			<p class="info-res">200 OK</p>
+			<p class="info-res">{responseStatus}</p>
 		</div>
 		<div class="flex flex-row gap-1">
 			<p class="info-title">Time</p>

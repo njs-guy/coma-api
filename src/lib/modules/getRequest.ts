@@ -1,5 +1,6 @@
 import axios from "axios";
 import { updateResponseStore } from "$lib/stores/responseStore";
+import { updateResponseStatusStore } from "$lib/stores/responseStatusStore";
 
 export default async function getRequest(url: string) {
 	// TODO: Put https:// at the beginning if it's missing
@@ -13,6 +14,7 @@ export default async function getRequest(url: string) {
 		});
 		console.log(response.data);
 		updateResponseStore(response.data);
+		updateResponseStatusStore(String(response.status));
 	} catch (error) {
 		console.error(error);
 		updateResponseStore(String(error));
