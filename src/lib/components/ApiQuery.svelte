@@ -19,18 +19,12 @@ function updateDataInputState() {
 }
 
 function handleRequest() {
-	const json: JSON = <JSON>(<unknown>{
-		name: "Man",
-		email: "man@email.com",
-		age: 33,
-	});
-
 	switch (requestType) {
 		case RequestType.GET:
 			getRequest(requestInput);
 			break;
 		case RequestType.POST:
-			postRequest(requestInput, json);
+			postRequest(requestInput, dataInput);
 			break;
 		case RequestType.PUT:
 			break;
@@ -85,6 +79,8 @@ onMount(() => {
 	</div>
 	<textarea
 		class="data-input-textarea textarea textarea-bordered flex-grow w-full h-full p-1 focus:outline-none"
+		placeholder="JSON data"
+		bind:value={dataInput}
 	/>
 </main>
 
