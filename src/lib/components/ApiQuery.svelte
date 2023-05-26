@@ -48,7 +48,7 @@ onMount(() => {
 			<div class="input-group">
 				<select
 					bind:value={requestType}
-					class="select max-w-xs rounded-lg bg-black focus:outline-none"
+					class="request-type-select select max-w-xs rounded-lg bg-black focus:outline-none"
 				>
 					<option value={RequestType.GET}>GET</option>
 					<option value={RequestType.POST}>POST</option>
@@ -56,7 +56,7 @@ onMount(() => {
 				<input
 					type="text"
 					placeholder="URL"
-					class="input input-bordered w-full flex-grow rounded-lg bg-none focus:outline-primary focus:outline-offset-0"
+					class="input border-color w-full flex-grow rounded-lg bg-deep focus:outline-primary focus:outline-offset-0"
 					bind:value={requestInput}
 				/>
 			</div>
@@ -78,7 +78,7 @@ onMount(() => {
 		</label>
 	</div>
 	<textarea
-		class="data-input-textarea textarea textarea-bordered flex-grow w-full h-full p-1 focus:outline-none"
+		class="data-input-textarea textarea border-color flex-grow w-full h-full p-1 bg-deep focus:outline-none"
 		placeholder="JSON data"
 		bind:value={dataInput}
 	/>

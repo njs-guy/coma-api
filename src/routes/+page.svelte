@@ -21,4 +21,12 @@ import ApiResponse from "$lib/components/ApiResponse.svelte";
 	height: 100vh;
 	margin: 0 auto;
 }
+.divider:before {
+	/* background-color: red; */
+	@apply bg-border;
+}
+.divider:after {
+	/* background-color: red; */
+	@apply bg-border;
+}
 </style>
