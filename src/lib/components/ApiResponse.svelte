@@ -7,7 +7,7 @@ responseStore.subscribe((value) => (responseText = value));
 </script>
 
 <textarea
-	class="textarea h-full w-full rounded-none focus:outline-none"
+	class="textarea h-full w-full rounded-none mono focus:outline-none"
 	placeholder="Response"
 	bind:value={responseText}
 />
