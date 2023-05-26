@@ -21,6 +21,10 @@ h1 {
 	@apply text-4xl;
 }
 
+.textarea {
+	line-height: 20px;
+}
+
 .mono {
 	font-family: "JetBrains Mono", monospace;
 }
