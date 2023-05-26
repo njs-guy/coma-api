@@ -32,6 +32,9 @@ module.exports = {
 					".request-type-select": {
 						"background-color": "#0e1013",
 					},
+					"::placeholder": {
+						color: "#535965",
+					},
 				},
 			},
 		],
