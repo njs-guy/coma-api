@@ -1,8 +1,12 @@
 <script lang="ts">
 import { onMount } from "svelte";
+import { RequestType } from "$lib/modules/requestTypes";
 import getRequest from "$lib/modules/getRequest";
+import postRequest from "$lib/modules/postRequest";
 
 let requestInput: string;
+let requestType: RequestType;
+let dataInput: string;
 let showDataInput: boolean;
 
 function updateDataInputState() {
@@ -12,6 +16,27 @@ function updateDataInputState() {
 
 	dataInputToggle.hidden = !showDataInput;
 	dataInputToggle.disabled = !showDataInput;
+}
+
+function handleRequest() {
+	const json: JSON = <JSON>(<unknown>{
+		name: "Man",
+		email: "man@email.com",
+		age: 33,
+	});
+
+	switch (requestType) {
+		case RequestType.GET:
+			getRequest(requestInput);
+			break;
+		case RequestType.POST:
+			postRequest(requestInput, json);
+			break;
+		case RequestType.PUT:
+			break;
+		case RequestType.DELETE:
+			break;
+	}
 }
 
 function onShowDataInputToggle() {
@@ -28,10 +53,11 @@ onMount(() => {
 		<div class="form-control flex-grow">
 			<div class="input-group">
 				<select
+					bind:value={requestType}
 					class="select max-w-xs rounded-lg bg-black focus:outline-none"
 				>
-					<option>GET</option>
-					<option>POST</option>
+					<option value={RequestType.GET}>GET</option>
+					<option value={RequestType.POST}>POST</option>
 				</select>
 				<input
 					type="text"
@@ -43,7 +69,7 @@ onMount(() => {
 		</div>
 		<button
 			class="btn btn-primary rounded-lg"
-			on:click={() => getRequest(requestInput)}>Send</button
+			on:click={handleRequest}>Send</button
 		>
 	</div>
 	<div class="form-control">
