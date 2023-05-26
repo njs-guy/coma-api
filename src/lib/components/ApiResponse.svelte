@@ -13,7 +13,7 @@ responseStore.subscribe((value) => (responseText = value));
 responseStatusStore.subscribe((value) => (responseStatus = value));
 </script>
 
-<main class="flex-grow">
+<main class="flex flex-col flex-grow">
 	<div class="flex flex-row flex-grow justify-end gap-1">
 		<div class="flex flex-row gap-1">
 			<p class="info-title">Status</p>
@@ -29,7 +29,7 @@ responseStatusStore.subscribe((value) => (responseStatus = value));
 		</div>
 	</div>
 	<textarea
-		class="textarea h-full w-full rounded-none mono focus:outline-none"
+		class="textarea flex-grow h-full w-full rounded-none mono focus:outline-none"
 		placeholder="Response"
 		bind:value={responseText}
 	/>

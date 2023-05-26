@@ -42,7 +42,7 @@ onMount(() => {
 });
 </script>
 
-<main class="flex flex-col gap-2 h-full">
+<main class="flex flex-col flex-grow gap-2 h-full">
 	<div class="flex flex-row gap-2">
 		<div class="form-control flex-grow">
 			<div class="input-group">

@@ -5,13 +5,9 @@ import ApiResponse from "$lib/components/ApiResponse.svelte";
 
 <main>
 	<div class="main-content">
-		<div class="flex-grow">
-			<ApiQuery />
-		</div>
+		<ApiQuery />
 		<div class="divider divider-horizontal m-0" />
-		<div class="flex-grow">
-			<ApiResponse />
-		</div>
+		<ApiResponse />
 	</div>
 </main>
 
