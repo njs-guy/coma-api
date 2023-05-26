@@ -14,7 +14,7 @@ responseStore.subscribe((value) => (responseText = value));
 
 <style scoped>
 .textarea {
+	padding: 0 0.25rem 0 0.25rem;
 	resize: none;
-	border-left: 1px solid gray;
 }
 </style>

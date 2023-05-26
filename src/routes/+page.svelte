@@ -8,6 +8,7 @@ import ApiResponse from "$lib/components/ApiResponse.svelte";
 		<div class="flex-grow">
 			<ApiQuery />
 		</div>
+		<div class="divider divider-horizontal m-0" />
 		<div class="flex-grow">
 			<ApiResponse />
 		</div>
@@ -16,7 +17,7 @@ import ApiResponse from "$lib/components/ApiResponse.svelte";
 
 <style scoped>
 .main-content {
-	@apply flex flex-row gap-4 p-2;
+	@apply flex flex-row gap-0 p-2;
 	height: 100vh;
 	margin: 0 auto;
 }
