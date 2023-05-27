@@ -1,5 +1,5 @@
 {
-	"cSpell.words": ["tauri"],
+	"cSpell.words": ["reqwest", "tauri"],
 	"eslint.enable": true,
 	"eslint.validate": ["svelte"],
 	"typescript.tsdk": "node_modules/typescript/lib"
