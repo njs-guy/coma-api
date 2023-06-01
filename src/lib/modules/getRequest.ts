@@ -24,7 +24,12 @@ import { updateResponseStatusStore } from "$lib/stores/responseStatusStore";
 
 export default async function getRequest(url: string) {
 	// TODO: update status store
-	// TODO: error checking
-	const data = (await invoke("get", { url: url })) as string;
-	updateResponseStore(data);
+
+	try {
+		const data = (await invoke("get", { url: url })) as string;
+		updateResponseStore(data);
+	} catch (error) {
+		console.error(error);
+		updateResponseStore(String(error));
+	}
 }

@@ -5,17 +5,14 @@
 
 mod requests;
 
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn greet(name: &str) -> String {
-	format!("Hello, {name}! You've been greeted from Rust!")
-}
-
 #[tauri::command]
 async fn get(url: String) -> String {
-	let res: String = requests::get::get_request(url).await.unwrap();
-	// println!("{:?}", res);
-	res
+	let res = requests::get::get_request(url).await;
+
+	match res {
+		Ok(res) => res,
+		Err(e) => format!("ERROR: {}", e),
+	}
 }
 
 // Create a build/ directory to get rid of this error.
