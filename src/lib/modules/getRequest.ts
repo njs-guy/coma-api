@@ -20,5 +20,8 @@ export default async function getRequest(url: string) {
 	} catch (error) {
 		console.error(error);
 		updateResponseStore(String(error));
+		updateResponseStatusStore("400");
+		updateResponseTimeStore("--");
+		updateResponseSizeStore("--");
 	}
 }

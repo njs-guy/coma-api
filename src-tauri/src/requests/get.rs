@@ -1,25 +1,28 @@
-#[derive(Debug, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct Response {
 	pub body: String,
 	pub status: ResponseStatus,
 }
 
-#[derive(Debug, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct ResponseStatus {
 	pub time: u32,
 	pub code: String,
-	pub size: u32,
+	pub size: usize,
 }
 
 pub async fn get_request(url: String) -> reqwest::Result<Response> {
 	let r = reqwest::get(url).await?;
+	let status = r.status();
+	let body = r.text().await?;
+
 	let response = Response {
-		body: r.text().await?,
 		status: ResponseStatus {
 			time: 100,
-			code: String::from("200 OK"),
-			size: 100,
+			code: format!("{}", status),
+			size: body.len(),
 		},
+		body,
 	};
 
 	Ok(response)

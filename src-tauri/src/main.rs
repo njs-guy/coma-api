@@ -19,7 +19,7 @@ async fn get(url: String) -> crate::requests::get::Response {
 				body: e.to_string(),
 				status: crate::requests::get::ResponseStatus {
 					time: 0,
-					code: String::from("Error"),
+					code: format!("{}", reqwest::StatusCode::BAD_REQUEST),
 					size: 0,
 				},
 			}
