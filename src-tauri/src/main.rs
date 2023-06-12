@@ -6,12 +6,24 @@
 mod requests;
 
 #[tauri::command]
-async fn get(url: String) -> String {
+async fn get(url: String) -> crate::requests::get::Response {
 	let res = requests::get::get_request(url).await;
+
+	// println!("{:?}", res);
 
 	match res {
 		Ok(res) => res,
-		Err(e) => format!("ERROR: {}", e),
+		Err(e) => {
+			// format!("ERROR: {}", e);
+			crate::requests::get::Response {
+				body: e.to_string(),
+				status: crate::requests::get::ResponseStatus {
+					time: 0,
+					code: String::from("Error"),
+					size: 0,
+				},
+			}
+		}
 	}
 }
 

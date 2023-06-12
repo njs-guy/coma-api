@@ -8,9 +8,13 @@ import {
 
 let responseText: string;
 let responseStatus: string;
+let responseTime: string;
+let responseSize: string;
 
 responseStore.subscribe((value) => (responseText = value));
 responseStatusStore.subscribe((value) => (responseStatus = value));
+responseTimeStore.subscribe((value) => (responseTime = value));
+responseSizeStore.subscribe((value) => (responseSize = value));
 </script>
 
 <main class="flex flex-col flex-grow">
@@ -21,11 +25,11 @@ responseStatusStore.subscribe((value) => (responseStatus = value));
 		</div>
 		<div class="flex flex-row gap-1">
 			<p class="info-title">Time</p>
-			<p class="info-res">100ms</p>
+			<p class="info-res">{responseTime} ms</p>
 		</div>
 		<div class="flex flex-row gap-1">
 			<p class="info-title">Size</p>
-			<p class="info-res">10 B</p>
+			<p class="info-res">{responseSize} B</p>
 		</div>
 	</div>
 	<textarea

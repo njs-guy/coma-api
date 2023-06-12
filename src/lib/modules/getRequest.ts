@@ -1,12 +1,13 @@
-import axios from "axios";
+// import axios from "axios";
 import { invoke } from "@tauri-apps/api";
 import { updateResponseStore } from "$lib/stores/responseStore";
-import { updateResponseStatusStore } from "$lib/stores/responseStatusStore";
+import {
+	updateResponseSizeStore,
+	updateResponseStatusStore,
+	updateResponseTimeStore,
+} from "$lib/stores/responseStatusStore";
 
 // export default async function getRequest(url: string) {
-// 	// TODO: Put https:// at the beginning if it's missing
-// 	// TODO: Fix CORS issues
-
 // 	try {
 // 		const response = await axios({
 // 			method: "get",
@@ -23,11 +24,17 @@ import { updateResponseStatusStore } from "$lib/stores/responseStatusStore";
 // }
 
 export default async function getRequest(url: string) {
-	// TODO: update status store
+	// TODO: fix JSON type errors
+	// TODO: Put https:// at the beginning if it's missing
+	// TODO: Fix CORS issues
 
 	try {
-		const data = (await invoke("get", { url: url })) as string;
-		updateResponseStore(data);
+		const data = (await invoke("get", { url: url })) as JSON;
+		updateResponseStore(data.body);
+		updateResponseStatusStore(data.status.code);
+		updateResponseTimeStore(data.status.time);
+		updateResponseSizeStore(data.status.size);
+		// console.log(data["body"]);
 	} catch (error) {
 		console.error(error);
 		updateResponseStore(String(error));
