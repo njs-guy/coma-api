@@ -1,14 +1,7 @@
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct GetResponse {
-	pub status: ResponseStatus,
+	pub status: crate::requests::ResponseStatus,
 	pub body: String,
-}
-
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
-pub struct ResponseStatus {
-	pub time: u128,
-	pub code: String,
-	pub size: usize,
 }
 
 pub async fn get_request(url: String) -> reqwest::Result<GetResponse> {
@@ -22,7 +15,7 @@ pub async fn get_request(url: String) -> reqwest::Result<GetResponse> {
 	let time = (end - start).as_millis();
 
 	let response = GetResponse {
-		status: ResponseStatus {
+		status: crate::requests::ResponseStatus {
 			time,
 			code: format!("{}", status),
 			size: body.len(),

@@ -9,7 +9,6 @@ import type { RequestJSON } from "./requestTypes";
 
 export default async function getRequest(url: string) {
 	// TODO: Put https:// at the beginning if it's missing
-	// TODO: Fix CORS issues
 
 	try {
 		const data = (await invoke("get", { url: url })) as RequestJSON;

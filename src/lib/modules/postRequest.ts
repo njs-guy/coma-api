@@ -1,6 +1,11 @@
-// import axios from "axios";
-import { updateResponseStore } from "$lib/stores/responseStore";
 import { invoke } from "@tauri-apps/api";
+import { updateResponseStore } from "$lib/stores/responseStore";
+import {
+	updateResponseSizeStore,
+	updateResponseStatusStore,
+	updateResponseTimeStore,
+} from "$lib/stores/responseStatusStore";
+import type { RequestJSON } from "./requestTypes";
 
 export default async function postRequest(url: string, data: string) {
 	let json: JSON;
@@ -13,31 +18,30 @@ export default async function postRequest(url: string, data: string) {
 	}
 
 	try {
-		// const response = await axios({
-		// 	method: "post",
-		// 	url: url,
-		// 	data: json,
-		// 	responseType: "text",
-		// });
-		// console.log(response.data);
-		// updateResponseStore(
-		// 	"POST request at URL '" + url + "' was successful."
-		// );
-
-		const data = await invoke("post", { url: url, json: json });
+		const data = (await invoke("post", {
+			url: url,
+			json: json,
+		})) as RequestJSON;
 		// console.log(data);
 
 		const message = "POST request at URL '" + url + "' was successful";
 
-		if (data === "") {
+		if (data.body === "") {
 			updateResponseStore(
 				message + ". There was no additional response."
 			);
 		} else {
-			updateResponseStore(message + " with response: " + String(data));
+			updateResponseStore(message + " with response: " + data.body);
 		}
+
+		updateResponseStatusStore(data.status.code);
+		updateResponseTimeStore(data.status.time);
+		updateResponseSizeStore(data.status.size);
 	} catch (error) {
 		console.error(error);
 		updateResponseStore(String(error));
+		updateResponseStatusStore("400");
+		updateResponseTimeStore("--");
+		updateResponseSizeStore("--");
 	}
 }
