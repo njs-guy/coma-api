@@ -1,7 +1,7 @@
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
-pub struct Response {
-	pub body: String,
+pub struct GetResponse {
 	pub status: ResponseStatus,
+	pub body: String,
 }
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
@@ -11,7 +11,7 @@ pub struct ResponseStatus {
 	pub size: usize,
 }
 
-pub async fn get_request(url: String) -> reqwest::Result<Response> {
+pub async fn get_request(url: String) -> reqwest::Result<GetResponse> {
 	let start = tokio::time::Instant::now(); // Start timer
 	let r = reqwest::get(url).await?; // Make request
 	let end = tokio::time::Instant::now(); // End timer
@@ -21,7 +21,7 @@ pub async fn get_request(url: String) -> reqwest::Result<Response> {
 	let body = r.text().await?;
 	let time = (end - start).as_millis();
 
-	let response = Response {
+	let response = GetResponse {
 		status: ResponseStatus {
 			time,
 			code: format!("{}", status),
