@@ -5,13 +5,13 @@ import {
 	updateResponseStatusStore,
 	updateResponseTimeStore,
 } from "$lib/stores/responseStatusStore";
-import type { RequestJSON } from "./requestTypes";
+import { createRequestUrl, type RequestJSON } from "./requestTypes";
 
-export default async function getRequest(url: string) {
-	// TODO: Put https:// at the beginning if it's missing
+export default async function getRequest(url: string, protocol = "HTTPS") {
+	const getUrl = createRequestUrl(url, protocol);
 
 	try {
-		const data = (await invoke("get", { url: url })) as RequestJSON;
+		const data = (await invoke("get", { url: getUrl })) as RequestJSON;
 		updateResponseStore(data.body);
 		updateResponseStatusStore(data.status.code);
 		updateResponseTimeStore(data.status.time);

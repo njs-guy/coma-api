@@ -5,9 +5,13 @@ import {
 	updateResponseStatusStore,
 	updateResponseTimeStore,
 } from "$lib/stores/responseStatusStore";
-import type { RequestJSON } from "./requestTypes";
+import { createRequestUrl, type RequestJSON } from "./requestTypes";
 
-export default async function postRequest(url: string, data: string) {
+export default async function postRequest(
+	url: string,
+	data: string,
+	protocol = "HTTPS"
+) {
 	let json: JSON;
 	try {
 		json = JSON.parse(data);
@@ -17,9 +21,11 @@ export default async function postRequest(url: string, data: string) {
 		return; // Cancel the request since the json is invalid.
 	}
 
+	const postUrl = createRequestUrl(url, protocol);
+
 	try {
 		const data = (await invoke("post", {
-			url: url,
+			url: postUrl,
 			json: json,
 		})) as RequestJSON;
 		// console.log(data);

@@ -1,11 +1,12 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import { RequestType } from "$lib/modules/requestTypes";
+import { protocolType, RequestType } from "$lib/modules/requestTypes";
 import getRequest from "$lib/modules/getRequest";
 import postRequest from "$lib/modules/postRequest";
 
 let requestInput: string;
 let requestType: RequestType;
+let selectedProtocolType: typeof protocolType;
 let dataInput: string;
 let showDataInput: boolean;
 
@@ -48,10 +49,21 @@ onMount(() => {
 			<div class="input-group">
 				<select
 					bind:value={requestType}
-					class="request-type-select select max-w-xs rounded-lg bg-black focus:outline-none"
+					class="request-type-select type-select select max-w-xs focus:outline-none"
 				>
 					<option value={RequestType.GET}>GET</option>
 					<option value={RequestType.POST}>POST</option>
+				</select>
+				<select
+					bind:value={selectedProtocolType}
+					class="protocol-type-select type-select select max-w-xs focus:outline-none"
+				>
+					<option value={protocolType.Other}>Other</option>
+					<option
+						value={protocolType.HTTPS}
+						selected>HTTPS</option
+					>
+					<option value={protocolType.HTTP}>HTTP</option>
 				</select>
 				<input
 					type="text"

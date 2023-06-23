@@ -4,6 +4,7 @@ pub struct PostResponse {
 	pub body: String,
 }
 
+/// Sends a POST request at the url with json data. Returns with a PostResponse.
 pub async fn post_json(
 	url: String,
 	json: serde_json::Value,

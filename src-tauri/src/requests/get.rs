@@ -4,6 +4,7 @@ pub struct GetResponse {
 	pub body: String,
 }
 
+/// Sends a GET request at the url. Returns with a GetResponse.
 pub async fn get_request(url: String) -> reqwest::Result<GetResponse> {
 	let start = tokio::time::Instant::now(); // Start timer
 	let r = reqwest::get(url).await?; // Make request

@@ -29,8 +29,8 @@ module.exports = {
 					".border-color": {
 						"border-color": borderColor,
 					},
-					".request-type-select": {
-						"background-color": "#0e1013",
+					".type-select": {
+						"background-color": "#000000",
 					},
 					".info-title": {
 						color: "#535965",
