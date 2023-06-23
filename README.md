@@ -1,8 +1,14 @@
-# Svelte-Kit + Vite
+# Coma API
 
-This template should help get you started developing with Tauri and Svelte-Kit in Vite.
+A simple RESTful API viewer.
 
-## Recommended IDE Setup
+## Building
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
-
+1. Install [NodeJS](https://nodejs.org/en/download),
+   [Yarn](https://yarnpkg.com/getting-started/install), and
+   [rustup](https://www.rust-lang.org/tools/install) if you haven't already.
+   See [Tauri prerequisites](https://tauri.app/v1/guides/getting-started/prerequisites).
+2. Clone this repo. Usually with `https://github.com/njshockey/coma-api.git`.
+3. Run `yarn` to install Node packages.
+4. Run `yarn tauri dev` to run the app and test changes.
+   - The first time run might take a while to compile Rust packages.
