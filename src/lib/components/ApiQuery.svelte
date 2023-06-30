@@ -25,7 +25,7 @@ function handleRequest() {
 			getRequest(requestInput, String(selectedProtocolType));
 			break;
 		case RequestType.POST:
-			postRequest(requestInput, dataInput);
+			postRequest(requestInput, dataInput, String(selectedProtocolType));
 			break;
 		case RequestType.PUT:
 			break;

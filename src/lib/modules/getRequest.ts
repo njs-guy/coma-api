@@ -10,24 +10,24 @@ import {
 import { createRequestUrl, type RequestJSON } from "./requestTypes";
 
 export default async function getRequest(url: string, protocol = "HTTP") {
-	const getUrl = createRequestUrl(url, protocol);
-
-	console.log(url);
-	console.log(getUrl);
-
 	if (url === undefined || url === "") {
 		updateResponseStore("No request was sent. Please input a url.");
 		resetStatus();
-	} else {
-		try {
-			const data = (await invoke("get", { url: getUrl })) as RequestJSON;
-			updateResponseStore(data.body);
-			updateResponseStatusStore(data.status.code);
-			updateResponseTimeStore(data.status.time);
-			updateResponseSizeStore(data.status.size);
-		} catch (error) {
-			console.error(error);
-			resetStatusWithErrorMessage(String(error));
-		}
+		return; // Do not send an obviously invalid request.
+	}
+
+	const getUrl = createRequestUrl(url, protocol);
+
+	console.log("Sending a GET request to " + getUrl + "...");
+
+	try {
+		const data = (await invoke("get", { url: getUrl })) as RequestJSON;
+		updateResponseStore(data.body);
+		updateResponseStatusStore(data.status.code);
+		updateResponseTimeStore(data.status.time);
+		updateResponseSizeStore(data.status.size);
+	} catch (error) {
+		console.error(error);
+		resetStatusWithErrorMessage(String(error));
 	}
 }
