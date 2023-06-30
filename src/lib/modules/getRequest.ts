@@ -1,6 +1,8 @@
 import { invoke } from "@tauri-apps/api";
 import { updateResponseStore } from "$lib/stores/responseStore";
 import {
+	resetStatus,
+	resetStatusWithErrorMessage,
 	updateResponseSizeStore,
 	updateResponseStatusStore,
 	updateResponseTimeStore,
@@ -10,19 +12,22 @@ import { createRequestUrl, type RequestJSON } from "./requestTypes";
 export default async function getRequest(url: string, protocol = "HTTP") {
 	const getUrl = createRequestUrl(url, protocol);
 
+	console.log(url);
 	console.log(getUrl);
 
-	try {
-		const data = (await invoke("get", { url: getUrl })) as RequestJSON;
-		updateResponseStore(data.body);
-		updateResponseStatusStore(data.status.code);
-		updateResponseTimeStore(data.status.time);
-		updateResponseSizeStore(data.status.size);
-	} catch (error) {
-		console.error(error);
-		updateResponseStore(String(error));
-		updateResponseStatusStore("400");
-		updateResponseTimeStore("--");
-		updateResponseSizeStore("--");
+	if (url === undefined || url === "") {
+		updateResponseStore("No request was sent. Please input a url.");
+		resetStatus();
+	} else {
+		try {
+			const data = (await invoke("get", { url: getUrl })) as RequestJSON;
+			updateResponseStore(data.body);
+			updateResponseStatusStore(data.status.code);
+			updateResponseTimeStore(data.status.time);
+			updateResponseSizeStore(data.status.size);
+		} catch (error) {
+			console.error(error);
+			resetStatusWithErrorMessage(String(error));
+		}
 	}
 }

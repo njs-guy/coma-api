@@ -1,9 +1,11 @@
 import { writable } from "svelte/store";
 import { updateResponseStore } from "./responseStore";
 
-export const responseStatusStore = writable("--");
-export const responseTimeStore = writable("--");
-export const responseSizeStore = writable("--");
+const defaultValue = "--";
+
+export const responseStatusStore = writable(defaultValue);
+export const responseTimeStore = writable(defaultValue);
+export const responseSizeStore = writable(defaultValue);
 
 // Takes an HTTP status such as 200.
 export function updateResponseStatusStore(newValue: string) {
@@ -33,4 +35,15 @@ export function getStatusText(status: number) {
 		default:
 			return "";
 	}
+}
+
+export function resetStatus() {
+	updateResponseStatusStore("400");
+	updateResponseTimeStore(defaultValue);
+	updateResponseSizeStore(defaultValue);
+}
+
+export function resetStatusWithErrorMessage(error: string) {
+	resetStatus();
+	updateResponseStore(error);
 }
