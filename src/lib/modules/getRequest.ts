@@ -7,8 +7,10 @@ import {
 } from "$lib/stores/responseStatusStore";
 import { createRequestUrl, type RequestJSON } from "./requestTypes";
 
-export default async function getRequest(url: string, protocol = "HTTPS") {
+export default async function getRequest(url: string, protocol = "HTTP") {
 	const getUrl = createRequestUrl(url, protocol);
+
+	console.log(getUrl);
 
 	try {
 		const data = (await invoke("get", { url: getUrl })) as RequestJSON;

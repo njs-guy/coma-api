@@ -16,14 +16,14 @@ export enum RequestType {
 
 export const protocolType = {
 	Other: "",
-	HTTP: "HTTP",
-	HTTPS: "HTTPS",
+	HTTP: "http",
+	HTTPS: "https",
 };
 
 export function createRequestUrl(url: string, protocol: string) {
 	let requestUrl: string;
 
-	if (url === "") {
+	if (protocol === "") {
 		requestUrl = url;
 	} else {
 		requestUrl = protocol + "://" + url;

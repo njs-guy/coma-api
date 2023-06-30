@@ -22,7 +22,7 @@ function updateDataInputState() {
 function handleRequest() {
 	switch (requestType) {
 		case RequestType.GET:
-			getRequest(requestInput);
+			getRequest(requestInput, String(selectedProtocolType));
 			break;
 		case RequestType.POST:
 			postRequest(requestInput, dataInput);
@@ -59,11 +59,11 @@ onMount(() => {
 					class="protocol-type-select type-select select max-w-xs focus:outline-none"
 				>
 					<option value={protocolType.Other}>Other</option>
+					<option value={protocolType.HTTPS}>HTTPS</option>
 					<option
-						value={protocolType.HTTPS}
-						selected>HTTPS</option
+						value={protocolType.HTTP}
+						selected>HTTP</option
 					>
-					<option value={protocolType.HTTP}>HTTP</option>
 				</select>
 				<input
 					type="text"
