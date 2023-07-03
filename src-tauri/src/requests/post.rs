@@ -1,3 +1,5 @@
+use super::check_for_base;
+
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct PostResponse {
 	pub status: crate::requests::ResponseStatus,
@@ -10,11 +12,12 @@ pub async fn post_json(
 	json: serde_json::Value,
 ) -> Result<PostResponse, reqwest::Error> {
 	let client = reqwest::Client::new();
+	let post_url = check_for_base(url);
 
 	let start = tokio::time::Instant::now(); // Start timer
 
 	// Send post request and await response
-	let r = client.post(url).json(&json).send().await?;
+	let r = client.post(post_url).json(&json).send().await?;
 
 	let end = tokio::time::Instant::now(); // End timer
 

@@ -7,21 +7,19 @@ import {
 	updateResponseStatusStore,
 	updateResponseTimeStore,
 } from "$lib/stores/responseStatusStore";
-import { createRequestUrl, type RequestJSON } from "./requestTypes";
+import type { RequestJSON } from "./requestTypes";
 
-export default async function getRequest(url: string, protocol = "HTTP") {
+export default async function getRequest(url: string) {
 	if (url === undefined || url === "") {
 		updateResponseStore("No request was sent. Please input a url.");
 		resetStatus();
 		return; // Do not send an obviously invalid request.
 	}
 
-	const getUrl = createRequestUrl(url, protocol);
-
-	console.log("Sending a GET request to " + getUrl + "...");
+	console.log("Sending a GET request to " + url + "...");
 
 	try {
-		const data = (await invoke("get", { url: getUrl })) as RequestJSON;
+		const data = (await invoke("get", { url: url })) as RequestJSON;
 		updateResponseStore(data.body);
 		updateResponseStatusStore(data.status.code);
 		updateResponseTimeStore(data.status.time);

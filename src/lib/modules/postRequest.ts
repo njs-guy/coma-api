@@ -7,13 +7,9 @@ import {
 	updateResponseStatusStore,
 	updateResponseTimeStore,
 } from "$lib/stores/responseStatusStore";
-import { createRequestUrl, type RequestJSON } from "./requestTypes";
+import type { RequestJSON } from "./requestTypes";
 
-export default async function postRequest(
-	url: string,
-	data: string,
-	protocol = "HTTP"
-) {
+export default async function postRequest(url: string, data: string) {
 	if (url === undefined || url === "") {
 		updateResponseStore("No request was sent. Please input a url.");
 		resetStatus();
@@ -37,13 +33,11 @@ export default async function postRequest(
 		return; // Cancel the request since the json is invalid.
 	}
 
-	const postUrl = createRequestUrl(url, protocol);
-
-	console.log("Sending a POST request to " + postUrl + "...");
+	console.log("Sending a POST request to " + url + "...");
 
 	try {
 		const data = (await invoke("post", {
-			url: postUrl,
+			url: url,
 			json: json,
 		})) as RequestJSON;
 		// console.log(data);

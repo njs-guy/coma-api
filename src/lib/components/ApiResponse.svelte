@@ -17,8 +17,8 @@ responseTimeStore.subscribe((value) => (responseTime = value));
 responseSizeStore.subscribe((value) => (responseSize = value));
 </script>
 
-<main class="flex flex-col flex-grow">
-	<div class="flex flex-row flex-grow justify-end gap-1">
+<main class="flex flex-col flex-grow max-w-xl">
+	<div class="flex flex-row justify-end gap-1">
 		<div class="flex flex-row gap-1">
 			<p class="info-title">Status</p>
 			<p class="info-res">{responseStatus}</p>
@@ -33,8 +33,8 @@ responseSizeStore.subscribe((value) => (responseSize = value));
 		</div>
 	</div>
 	<textarea
-		class="textarea flex-grow h-full w-full rounded-none mono focus:outline-none"
-		placeholder="Response"
+		class="textarea h-full w-full rounded-none mono focus:outline-none"
+		placeholder="No response yet."
 		bind:value={responseText}
 	/>
 </main>
