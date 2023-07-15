@@ -1,5 +1,6 @@
 pub mod get;
 pub mod post;
+pub mod put;
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct ResponseStatus {

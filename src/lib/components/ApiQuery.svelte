@@ -3,6 +3,7 @@ import { onMount } from "svelte";
 import { protocolType, RequestType } from "$lib/modules/requestTypes";
 import getRequest from "$lib/modules/getRequest";
 import postRequest from "$lib/modules/postRequest";
+import putRequest from "$lib/modules/putRequest";
 
 let requestInput: string;
 let requestType: RequestType;
@@ -28,6 +29,7 @@ function handleRequest() {
 			postRequest(requestInput, dataInput);
 			break;
 		case RequestType.PUT:
+			putRequest(requestInput, dataInput);
 			break;
 		case RequestType.DELETE:
 			break;
@@ -53,18 +55,8 @@ onMount(() => {
 				>
 					<option value={RequestType.GET}>GET</option>
 					<option value={RequestType.POST}>POST</option>
+					<option value={RequestType.PUT}>PUT</option>
 				</select>
-				<!-- <select
-					bind:value={selectedProtocolType}
-					class="protocol-type-select type-select select max-w-xs focus:outline-none"
-				>
-					<option value={protocolType.Other}>Other</option>
-					<option value={protocolType.HTTPS}>HTTPS</option>
-					<option
-						value={protocolType.HTTP}
-						selected>HTTP</option
-					>
-				</select> -->
 				<input
 					type="text"
 					placeholder="URL"
