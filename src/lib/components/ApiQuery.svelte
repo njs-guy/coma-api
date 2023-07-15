@@ -1,13 +1,13 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import { protocolType, RequestType } from "$lib/modules/requestTypes";
+import { RequestType } from "$lib/modules/requestTypes";
 import getRequest from "$lib/modules/getRequest";
 import postRequest from "$lib/modules/postRequest";
 import putRequest from "$lib/modules/putRequest";
+import deleteRequest from "$lib/modules/deleteRequest";
 
 let requestInput: string;
 let requestType: RequestType;
-let selectedProtocolType: typeof protocolType;
 let dataInput: string;
 let showDataInput: boolean;
 
@@ -32,6 +32,7 @@ function handleRequest() {
 			putRequest(requestInput, dataInput);
 			break;
 		case RequestType.DELETE:
+			deleteRequest(requestInput);
 			break;
 	}
 }
@@ -56,6 +57,7 @@ onMount(() => {
 					<option value={RequestType.GET}>GET</option>
 					<option value={RequestType.POST}>POST</option>
 					<option value={RequestType.PUT}>PUT</option>
+					<option value={RequestType.DELETE}>DELETE</option>
 				</select>
 				<input
 					type="text"

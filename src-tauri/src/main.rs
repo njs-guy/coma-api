@@ -62,10 +62,27 @@ async fn put(
 	}
 }
 
+#[tauri::command]
+async fn delete(url: String) -> crate::requests::get::GetResponse {
+	let res = requests::delete::delete_request(url).await;
+
+	match res {
+		Ok(res) => res,
+		Err(e) => crate::requests::get::GetResponse {
+			status: crate::requests::ResponseStatus {
+				time: 0,
+				code: format!("{}", reqwest::StatusCode::BAD_REQUEST),
+				size: 0,
+			},
+			body: e.to_string(),
+		},
+	}
+}
+
 // Create a build/ directory to get rid of this error.
 fn main() {
 	tauri::Builder::default()
-		.invoke_handler(tauri::generate_handler![get, post, put])
+		.invoke_handler(tauri::generate_handler![get, post, put, delete])
 		.run(tauri::generate_context!())
 		.expect("error while running tauri application");
 }
