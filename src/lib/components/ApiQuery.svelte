@@ -1,13 +1,9 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import { RequestType } from "$lib/modules/requestTypes";
-import getRequest from "$lib/modules/getRequest";
-import postRequest from "$lib/modules/postRequest";
-import putRequest from "$lib/modules/putRequest";
-import deleteRequest from "$lib/modules/deleteRequest";
+import { reqMethod, sendRequest, sendRequestJson } from "$lib/modules/requests";
 
 let requestInput: string;
-let requestType: RequestType;
+let requestType: string;
 let dataInput: string;
 let showDataInput: boolean;
 
@@ -22,17 +18,16 @@ function updateDataInputState() {
 
 function handleRequest() {
 	switch (requestType) {
-		case RequestType.GET:
-			getRequest(requestInput);
+		case reqMethod.GET:
+		case reqMethod.DELETE:
+			sendRequest(requestType, requestInput);
 			break;
-		case RequestType.POST:
-			postRequest(requestInput, dataInput);
+		case reqMethod.POST:
+		case reqMethod.PUT:
+			sendRequestJson(requestType, requestInput, dataInput);
 			break;
-		case RequestType.PUT:
-			putRequest(requestInput, dataInput);
-			break;
-		case RequestType.DELETE:
-			deleteRequest(requestInput);
+		default:
+			sendRequest(reqMethod.GET, requestInput);
 			break;
 	}
 }
@@ -54,10 +49,10 @@ onMount(() => {
 					bind:value={requestType}
 					class="request-type-select type-select select max-w-xs focus:outline-none"
 				>
-					<option value={RequestType.GET}>GET</option>
-					<option value={RequestType.POST}>POST</option>
-					<option value={RequestType.PUT}>PUT</option>
-					<option value={RequestType.DELETE}>DELETE</option>
+					<option value={reqMethod.GET}>GET</option>
+					<option value={reqMethod.POST}>POST</option>
+					<option value={reqMethod.PUT}>PUT</option>
+					<option value={reqMethod.DELETE}>DELETE</option>
 				</select>
 				<input
 					type="text"
