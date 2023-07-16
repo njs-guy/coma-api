@@ -1,8 +1,16 @@
 {
-	"name": "api",
+	"name": "coma-api",
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",
+	"description": "A simple RESTful API viewer",
+	"author": "Nick Shockey <shockeynj@gmail.com>",
+	"homepage": "https://github.com/njshockey/coma-api",
+	"license": "MPL-2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/njshockey/coma-api.git"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",

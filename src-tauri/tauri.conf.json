@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "api",
+    "productName": "coma-api",
     "version": "0.1.0"
   },
   "tauri": {
@@ -61,7 +61,7 @@
       {
         "width": 1000,
         "height": 700,
-        "title": "Api Viewer",
+        "title": "Coma API Viewer",
         "fullscreen": false,
         "resizable": true
       }
