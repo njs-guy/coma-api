@@ -1,12 +1,9 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import { protocolType, RequestType } from "$lib/modules/requestTypes";
-import getRequest from "$lib/modules/getRequest";
-import postRequest from "$lib/modules/postRequest";
+import { reqMethod, sendRequest, sendRequestJson } from "$lib/modules/requests";
 
 let requestInput: string;
-let requestType: RequestType;
-let selectedProtocolType: typeof protocolType;
+let requestType: string;
 let dataInput: string;
 let showDataInput: boolean;
 
@@ -21,15 +18,16 @@ function updateDataInputState() {
 
 function handleRequest() {
 	switch (requestType) {
-		case RequestType.GET:
-			getRequest(requestInput, String(selectedProtocolType));
+		case reqMethod.GET:
+		case reqMethod.DELETE:
+			sendRequest(requestType, requestInput);
 			break;
-		case RequestType.POST:
-			postRequest(requestInput, dataInput, String(selectedProtocolType));
+		case reqMethod.POST:
+		case reqMethod.PUT:
+			sendRequestJson(requestType, requestInput, dataInput);
 			break;
-		case RequestType.PUT:
-			break;
-		case RequestType.DELETE:
+		default:
+			sendRequest(reqMethod.GET, requestInput);
 			break;
 	}
 }
@@ -51,19 +49,10 @@ onMount(() => {
 					bind:value={requestType}
 					class="request-type-select type-select select max-w-xs focus:outline-none"
 				>
-					<option value={RequestType.GET}>GET</option>
-					<option value={RequestType.POST}>POST</option>
-				</select>
-				<select
-					bind:value={selectedProtocolType}
-					class="protocol-type-select type-select select max-w-xs focus:outline-none"
-				>
-					<option value={protocolType.Other}>Other</option>
-					<option value={protocolType.HTTPS}>HTTPS</option>
-					<option
-						value={protocolType.HTTP}
-						selected>HTTP</option
-					>
+					<option value={reqMethod.GET}>GET</option>
+					<option value={reqMethod.POST}>POST</option>
+					<option value={reqMethod.PUT}>PUT</option>
+					<option value={reqMethod.DELETE}>DELETE</option>
 				</select>
 				<input
 					type="text"
