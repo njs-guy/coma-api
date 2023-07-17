@@ -8,12 +8,30 @@ let dataInput: string;
 let showDataInput: boolean;
 
 function updateDataInputState() {
-	const dataInputToggle = document.querySelector(
+	const dataInput = document.querySelector(
 		".data-input-textarea"
 	) as HTMLTextAreaElement;
 
-	dataInputToggle.hidden = !showDataInput;
-	dataInputToggle.disabled = !showDataInput;
+	dataInput.hidden = !showDataInput;
+	dataInput.disabled = !showDataInput;
+}
+
+function updateShowDataInput() {
+	switch (requestType) {
+		case reqMethod.GET:
+		case reqMethod.DELETE:
+			showDataInput = false;
+			break;
+		case reqMethod.POST:
+		case reqMethod.PUT:
+			showDataInput = true;
+			break;
+		default:
+			showDataInput = true;
+			break;
+	}
+
+	updateDataInputState();
 }
 
 function handleRequest() {
@@ -46,8 +64,9 @@ onMount(() => {
 		<div class="form-control flex-grow">
 			<div class="input-group">
 				<select
-					bind:value={requestType}
 					class="request-type-select type-select select max-w-xs focus:outline-none"
+					bind:value={requestType}
+					on:change={updateShowDataInput}
 				>
 					<option value={reqMethod.GET}>GET</option>
 					<option value={reqMethod.POST}>POST</option>
@@ -73,6 +92,7 @@ onMount(() => {
 			<input
 				type="checkbox"
 				class="toggle toggle-primary"
+				id="data-input-toggle"
 				bind:checked={showDataInput}
 				on:change={onShowDataInputToggle}
 			/>
