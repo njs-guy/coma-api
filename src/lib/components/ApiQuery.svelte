@@ -62,29 +62,31 @@ onMount(() => {
 <main class="flex flex-col flex-grow gap-2 h-full">
 	<div class="flex flex-row gap-2">
 		<div class="form-control flex-grow">
-			<div class="input-group">
-				<select
-					class="request-type-select type-select select max-w-xs focus:outline-none"
-					bind:value={requestType}
-					on:change={updateShowDataInput}
-				>
-					<option value={reqMethod.GET}>GET</option>
-					<option value={reqMethod.POST}>POST</option>
-					<option value={reqMethod.PUT}>PUT</option>
-					<option value={reqMethod.DELETE}>DELETE</option>
-				</select>
+			<div class="join">
+				<div>
+					<select
+						class="request-type-select type-select select max-w-xs focus:outline-none join-item"
+						bind:value={requestType}
+						on:change={updateShowDataInput}
+					>
+						<option value={reqMethod.GET}>GET</option>
+						<option value={reqMethod.POST}>POST</option>
+						<option value={reqMethod.PUT}>PUT</option>
+						<option value={reqMethod.DELETE}>DELETE</option>
+					</select>
+				</div>
 				<input
 					type="text"
 					placeholder="URL"
-					class="input border-color w-full flex-grow rounded-lg bg-deep focus:outline-primary focus:outline-offset-0"
+					class="input border-color w-full flex-grow rounded-lg bg-deep focus:outline-primary focus:outline-offset-0 join-item"
 					bind:value={requestInput}
 				/>
+				<button
+					class="btn btn-primary rounded-lg join-item"
+					on:click={handleRequest}>Send</button
+				>
 			</div>
 		</div>
-		<button
-			class="btn btn-primary rounded-lg"
-			on:click={handleRequest}>Send</button
-		>
 	</div>
 	<div class="form-control">
 		<label class="label cursor-pointer">
