@@ -1,10 +1,6 @@
 <script lang="ts">
-import { save } from "@tauri-apps/api/dialog";
-import { downloadDir } from "@tauri-apps/api/path";
-import { writeTextFile } from "@tauri-apps/api/fs";
 import { onMount } from "svelte";
 import { reqMethod, sendRequest, sendRequestJson } from "$lib/modules/requests";
-import { responseStore } from "$lib/stores/responseStore";
 
 let requestInput: string;
 let requestType: string;
@@ -54,26 +50,6 @@ function handleRequest() {
 	}
 }
 
-function copyResponseToClipboard() {
-	navigator.clipboard.writeText($responseStore);
-}
-
-async function saveResponseToFile() {
-	const fileName = "response.txt";
-
-	const filePath = await save({
-		defaultPath: (await downloadDir()) + "/" + fileName,
-		filters: [
-			{ name: "text", extensions: ["txt", "json"] },
-			{ name: "All files", extensions: ["*"] },
-		],
-	});
-
-	if (filePath !== null) {
-		await writeTextFile(filePath, $responseStore);
-	}
-}
-
 function onShowDataInputToggle() {
 	updateDataInputState();
 }
@@ -109,34 +85,6 @@ onMount(() => {
 					class="btn btn-primary rounded-lg join-item"
 					on:click={handleRequest}>Send</button
 				>
-				<div class="dropdown">
-					<label
-						tabindex="0"
-						class="btn btn-primary rounded-lg p-2 rounded-r-lg rounded-l-none"
-						>...</label
-					>
-					<ul
-						tabindex="0"
-						class="dropdown-content z-[1] menu shadow bg-base-300 rounded-lg w-auto"
-					>
-						<li>
-							<a
-								on:click={() => {
-									handleRequest();
-									copyResponseToClipboard();
-								}}>Send and copy</a
-							>
-						</li>
-						<li>
-							<a
-								on:click={async () => {
-									handleRequest();
-									await saveResponseToFile();
-								}}>Send and save</a
-							>
-						</li>
-					</ul>
-				</div>
 			</div>
 		</div>
 	</div>

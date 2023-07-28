@@ -1,4 +1,7 @@
 <script lang="ts">
+import { save } from "@tauri-apps/api/dialog";
+import { downloadDir } from "@tauri-apps/api/path";
+import { writeTextFile } from "@tauri-apps/api/fs";
 import { responseStore } from "$lib/stores/responseStore";
 import {
 	responseStatusStore,
@@ -15,10 +18,55 @@ responseStore.subscribe((value) => (responseText = value));
 responseStatusStore.subscribe((value) => (responseStatus = value));
 responseTimeStore.subscribe((value) => (responseTime = value));
 responseSizeStore.subscribe((value) => (responseSize = value));
+
+function copyResponseToClipboard() {
+	navigator.clipboard.writeText(responseText);
+}
+
+async function saveResponseToFile() {
+	const fileName = "response.txt";
+
+	const filePath = await save({
+		defaultPath: (await downloadDir()) + "/" + fileName,
+		filters: [
+			{ name: "text", extensions: ["txt", "json"] },
+			{ name: "All files", extensions: ["*"] },
+		],
+	});
+
+	if (filePath !== null) {
+		await writeTextFile(filePath, responseText);
+	}
+}
 </script>
 
 <main class="flex flex-col flex-grow max-w-xl">
-	<div class="flex flex-row justify-end gap-1">
+	<div class="flex flex-row justify-end align-top gap-1">
+		<div class="dropdown">
+			<button class="text-bold info-res rounded-lg pr-4">Save as</button>
+			<ul
+				class="dropdown-content z-[1] menu shadow bg-base-300 rounded-lg w-auto"
+			>
+				<li>
+					<button
+						tabindex="0"
+						on:click={copyResponseToClipboard}
+						on:keypress={copyResponseToClipboard}
+					>
+						Copy to clipboard
+					</button>
+				</li>
+				<li>
+					<button
+						tabindex="0"
+						on:click={saveResponseToFile}
+						on:keypress={saveResponseToFile}
+					>
+						Save to file
+					</button>
+				</li>
+			</ul>
+		</div>
 		<div class="flex flex-row gap-1">
 			<p class="info-title">Status</p>
 			<p class="info-res">{responseStatus}</p>
