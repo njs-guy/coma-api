@@ -1,6 +1,7 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import { reqMethod, sendRequest, sendRequestJson } from "$lib/modules/requests";
+import { responseStore } from "$lib/stores/responseStore";
 
 let requestInput: string;
 let requestType: string;
@@ -50,6 +51,10 @@ function handleRequest() {
 	}
 }
 
+function copyResponseToClipboard() {
+	navigator.clipboard.writeText($responseStore);
+}
+
 function onShowDataInputToggle() {
 	updateDataInputState();
 }
@@ -95,8 +100,22 @@ onMount(() => {
 						tabindex="0"
 						class="dropdown-content z-[1] menu shadow bg-base-300 rounded-lg w-auto"
 					>
-						<li><a>Send and copy</a></li>
-						<li><a>Send and save</a></li>
+						<li>
+							<a
+								on:click={() => {
+									handleRequest();
+									copyResponseToClipboard();
+								}}>Send and copy</a
+							>
+						</li>
+						<li>
+							<a
+								on:click={() => {
+									handleRequest();
+									copyResponseToClipboard();
+								}}>Send and save</a
+							>
+						</li>
 					</ul>
 				</div>
 			</div>
