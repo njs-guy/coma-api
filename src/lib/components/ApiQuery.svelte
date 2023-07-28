@@ -85,6 +85,20 @@ onMount(() => {
 					class="btn btn-primary rounded-lg join-item"
 					on:click={handleRequest}>Send</button
 				>
+				<div class="dropdown">
+					<label
+						tabindex="0"
+						class="btn btn-primary rounded-lg p-2 rounded-r-lg rounded-l-none"
+						>...</label
+					>
+					<ul
+						tabindex="0"
+						class="dropdown-content z-[1] menu shadow bg-base-300 rounded-lg w-auto"
+					>
+						<li><a>Send and copy</a></li>
+						<li><a>Send and save</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
