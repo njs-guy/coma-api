@@ -8,6 +8,7 @@ import {
 	responseTimeStore,
 	responseSizeStore,
 } from "$lib/stores/responseStatusStore";
+import { showAlertBarTemp } from "$lib/stores/alertStore";
 
 let responseText: string;
 let responseStatus: string;
@@ -47,6 +48,7 @@ async function saveResponseToFile() {
 function onCopyToClipboardClick() {
 	copyResponseToClipboard();
 	unfocusDropdown();
+	showAlertBarTemp("Copied to clipboard", 3);
 }
 </script>
 
