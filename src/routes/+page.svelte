@@ -2,6 +2,7 @@
 import AlertBar from "$lib/components/AlertBar.svelte";
 import ApiQuery from "$lib/components/ApiQuery.svelte";
 import ApiResponse from "$lib/components/ApiResponse.svelte";
+import SettingsPage from "$lib/components/SettingsPage.svelte";
 import { hideAlertBar } from "$lib/stores/alertStore";
 import { onMount } from "svelte";
 
@@ -16,6 +17,7 @@ onMount(() => {
 		<div class="divider divider-horizontal m-0" />
 		<ApiResponse />
 		<AlertBar />
+		<SettingsPage />
 	</div>
 </main>
 

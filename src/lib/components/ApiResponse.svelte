@@ -9,6 +9,7 @@ import {
 	responseSizeStore,
 } from "$lib/stores/responseStatusStore";
 import { showAlertBarTemp } from "$lib/stores/alertStore";
+import { showSettingsPage } from "$lib/modules/showPage";
 
 let responseText: string;
 let responseStatus: string;
@@ -54,43 +55,53 @@ function onCopyToClipboardClick() {
 
 <main class="flex flex-col flex-grow max-w-xl">
 	<div class="flex flex-row justify-end align-top gap-1">
-		<div class="dropdown">
-			<button class="text-bold info-res rounded-lg pr-4">Save as</button>
-			<ul
-				class="dropdown-content z-[1] menu shadow bg-base-300 rounded-lg w-auto"
+		<div class="flex flex-row gap-4">
+			<button
+				class="info-res"
+				on:click={showSettingsPage}>Settings</button
 			>
-				<li>
-					<button
-						id="copy-dropdown"
-						tabindex="0"
-						on:click={onCopyToClipboardClick}
-						on:keypress={onCopyToClipboardClick}
-					>
-						Copy to clipboard
-					</button>
-				</li>
-				<li>
-					<button
-						tabindex="0"
-						on:click={saveResponseToFile}
-						on:keypress={saveResponseToFile}
-					>
-						Save to file
-					</button>
-				</li>
-			</ul>
+			<div class="dropdown">
+				<button class="text-bold info-res rounded-lg pr-4"
+					>Save as</button
+				>
+				<ul
+					class="dropdown-content z-[1] menu shadow bg-base-300 rounded-lg w-auto"
+				>
+					<li>
+						<button
+							id="copy-dropdown"
+							tabindex="0"
+							on:click={onCopyToClipboardClick}
+							on:keypress={onCopyToClipboardClick}
+						>
+							Copy to clipboard
+						</button>
+					</li>
+					<li>
+						<button
+							tabindex="0"
+							on:click={saveResponseToFile}
+							on:keypress={saveResponseToFile}
+						>
+							Save to file
+						</button>
+					</li>
+				</ul>
+			</div>
 		</div>
-		<div class="flex flex-row gap-1">
-			<p class="info-title">Status</p>
-			<p class="info-res">{responseStatus}</p>
-		</div>
-		<div class="flex flex-row gap-1">
-			<p class="info-title">Time</p>
-			<p class="info-res">{responseTime} ms</p>
-		</div>
-		<div class="flex flex-row gap-1">
-			<p class="info-title">Size</p>
-			<p class="info-res">{responseSize} B</p>
+		<div class="flex flex-row gap-2">
+			<div class="flex flex-row gap-1">
+				<p class="info-title">Status</p>
+				<p class="info-res">{responseStatus}</p>
+			</div>
+			<div class="flex flex-row gap-1">
+				<p class="info-title">Time</p>
+				<p class="info-res">{responseTime} ms</p>
+			</div>
+			<div class="flex flex-row gap-1">
+				<p class="info-title">Size</p>
+				<p class="info-res">{responseSize} B</p>
+			</div>
 		</div>
 	</div>
 	<textarea
