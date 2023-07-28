@@ -1,4 +1,7 @@
 <script lang="ts">
+import { save } from "@tauri-apps/api/dialog";
+import { downloadDir } from "@tauri-apps/api/path";
+import { writeTextFile } from "@tauri-apps/api/fs";
 import { onMount } from "svelte";
 import { reqMethod, sendRequest, sendRequestJson } from "$lib/modules/requests";
 import { responseStore } from "$lib/stores/responseStore";
@@ -53,6 +56,22 @@ function handleRequest() {
 
 function copyResponseToClipboard() {
 	navigator.clipboard.writeText($responseStore);
+}
+
+async function saveResponseToFile() {
+	const fileName = "response.txt";
+
+	const filePath = await save({
+		defaultPath: (await downloadDir()) + "/" + fileName,
+		filters: [
+			{ name: "text", extensions: ["txt", "json"] },
+			{ name: "All files", extensions: ["*"] },
+		],
+	});
+
+	if (filePath !== null) {
+		await writeTextFile(filePath, $responseStore);
+	}
 }
 
 function onShowDataInputToggle() {
@@ -110,9 +129,9 @@ onMount(() => {
 						</li>
 						<li>
 							<a
-								on:click={() => {
+								on:click={async () => {
 									handleRequest();
-									copyResponseToClipboard();
+									await saveResponseToFile();
 								}}>Send and save</a
 							>
 						</li>
