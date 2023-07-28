@@ -19,6 +19,11 @@ responseStatusStore.subscribe((value) => (responseStatus = value));
 responseTimeStore.subscribe((value) => (responseTime = value));
 responseSizeStore.subscribe((value) => (responseSize = value));
 
+function unfocusDropdown() {
+	const dropdown = document.getElementById("copy-dropdown") as HTMLDivElement;
+	dropdown.blur();
+}
+
 function copyResponseToClipboard() {
 	navigator.clipboard.writeText(responseText);
 }
@@ -38,6 +43,11 @@ async function saveResponseToFile() {
 		await writeTextFile(filePath, responseText);
 	}
 }
+
+function onCopyToClipboardClick() {
+	copyResponseToClipboard();
+	unfocusDropdown();
+}
 </script>
 
 <main class="flex flex-col flex-grow max-w-xl">
@@ -49,9 +59,10 @@ async function saveResponseToFile() {
 			>
 				<li>
 					<button
+						id="copy-dropdown"
 						tabindex="0"
-						on:click={copyResponseToClipboard}
-						on:keypress={copyResponseToClipboard}
+						on:click={onCopyToClipboardClick}
+						on:keypress={onCopyToClipboardClick}
 					>
 						Copy to clipboard
 					</button>
