@@ -1,6 +1,8 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import { changeSettingsTab, settingPages } from "$lib/modules/showPage";
+import AboutPage from "./AboutPage.svelte";
+import GeneralSettingsPage from "./GeneralSettingsPage.svelte";
 
 onMount(() => {
 	changeSettingsTab("general");
@@ -52,11 +54,12 @@ onMount(() => {
 					</div>
 				</li>
 			</ul>
+			<!-- Pages to be shown/hidden -->
 			<div
 				class="settings"
 				id="general-settings"
 			>
-				<p>General</p>
+				<GeneralSettingsPage />
 			</div>
 			<div
 				class="settings"
@@ -68,9 +71,15 @@ onMount(() => {
 				class="settings"
 				id="about-settings"
 			>
-				<p>About</p>
+				<AboutPage />
 			</div>
 		</div>
 		<button class="btn btn-sm btn-error">Close</button>
 	</form>
 </dialog>
+
+<style scoped>
+.settings {
+	@apply p-2;
+}
+</style>

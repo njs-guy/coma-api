@@ -2,7 +2,7 @@
 import AlertBar from "$lib/components/AlertBar.svelte";
 import ApiQuery from "$lib/components/ApiQuery.svelte";
 import ApiResponse from "$lib/components/ApiResponse.svelte";
-import SettingsPage from "$lib/components/SettingsPage.svelte";
+import SettingsPage from "$lib/components/pages/SettingsPage.svelte";
 import { hideAlertBar } from "$lib/stores/alertStore";
 import { onMount } from "svelte";
 

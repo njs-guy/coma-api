@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter+Tight:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap");
 
+/* TODO: Bundle fonts */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,7 +20,11 @@
 }
 
 h1 {
-	@apply text-4xl;
+	@apply text-4xl font-bold;
+}
+
+h2 {
+	@apply text-2xl font-bold;
 }
 
 .textarea {
