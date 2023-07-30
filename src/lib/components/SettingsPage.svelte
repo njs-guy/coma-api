@@ -1,41 +1,9 @@
 <script lang="ts">
 import { onMount } from "svelte";
-
-const settingPages = {
-	general: "general",
-	something: "something",
-	about: "about",
-};
-
-function hideTabs() {
-	const tabs = [
-		settingPages.general,
-		settingPages.something,
-		settingPages.about,
-	];
-
-	for (const tab in tabs) {
-		const value: string = tabs[tab];
-		const tabName = value + "-settings";
-
-		const t = document.getElementById(tabName);
-		if (t !== null) {
-			t.setAttribute("hidden", "");
-		}
-	}
-}
-
-function changeTab(newTab: string) {
-	hideTabs();
-
-	const tab = document.getElementById(newTab + "-settings");
-	if (tab !== null) {
-		tab.removeAttribute("hidden");
-	}
-}
+import { changeSettingsTab, settingPages } from "$lib/modules/showPage";
 
 onMount(() => {
-	changeTab("general");
+	changeSettingsTab("general");
 });
 </script>
 
@@ -53,8 +21,9 @@ onMount(() => {
 					<div
 						role="button"
 						tabindex="0"
-						on:click={() => changeTab(settingPages.general)}
-						on:keypress={() => changeTab(settingPages.general)}
+						on:click={() => changeSettingsTab(settingPages.general)}
+						on:keypress={() =>
+							changeSettingsTab(settingPages.general)}
 					>
 						General
 					</div>
@@ -63,8 +32,10 @@ onMount(() => {
 					<div
 						role="button"
 						tabindex="0"
-						on:click={() => changeTab(settingPages.something)}
-						on:keypress={() => changeTab(settingPages.something)}
+						on:click={() =>
+							changeSettingsTab(settingPages.something)}
+						on:keypress={() =>
+							changeSettingsTab(settingPages.something)}
 					>
 						Something
 					</div>
@@ -73,8 +44,9 @@ onMount(() => {
 					<div
 						role="button"
 						tabindex="0"
-						on:click={() => changeTab(settingPages.about)}
-						on:keypress={() => changeTab(settingPages.about)}
+						on:click={() => changeSettingsTab(settingPages.about)}
+						on:keypress={() =>
+							changeSettingsTab(settingPages.about)}
 					>
 						About
 					</div>

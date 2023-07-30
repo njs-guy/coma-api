@@ -9,7 +9,11 @@ import {
 	responseSizeStore,
 } from "$lib/stores/responseStatusStore";
 import { showAlertBarTemp } from "$lib/stores/alertStore";
-import { showSettingsPage } from "$lib/modules/showPage";
+import {
+	changeSettingsTab,
+	settingPages,
+	showSettingsPage,
+} from "$lib/modules/showPage";
 
 let responseText: string;
 let responseStatus: string;
@@ -58,7 +62,10 @@ function onCopyToClipboardClick() {
 		<div class="flex flex-row gap-4">
 			<button
 				class="info-res"
-				on:click={showSettingsPage}>Settings</button
+				on:click={() => {
+					showSettingsPage();
+					changeSettingsTab(settingPages.general);
+				}}>Settings</button
 			>
 			<div class="dropdown">
 				<button class="text-bold info-res rounded-lg pr-4"
