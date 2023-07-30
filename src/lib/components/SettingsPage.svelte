@@ -46,11 +46,36 @@ onMount(() => {
 	>
 		<div class="flex flex-row">
 			<ul class="flex flex-col menu bg-base-200 w-auto rounded-box">
-				<li><a on:click={() => changeTab("general")}>General</a></li>
 				<li>
-					<a on:click={() => changeTab("something")}>Something</a>
+					<div
+						role="button"
+						tabindex="0"
+						on:click={() => changeTab("general")}
+						on:keypress={() => changeTab("general")}
+					>
+						General
+					</div>
 				</li>
-				<li><a on:click={() => changeTab("about")}>About</a></li>
+				<li>
+					<div
+						role="button"
+						tabindex="0"
+						on:click={() => changeTab("something")}
+						on:keypress={() => changeTab("something")}
+					>
+						Something
+					</div>
+				</li>
+				<li>
+					<div
+						role="button"
+						tabindex="0"
+						on:click={() => changeTab("about")}
+						on:keypress={() => changeTab("about")}
+					>
+						About
+					</div>
+				</li>
 			</ul>
 			<div
 				class="settings"
