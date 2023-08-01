@@ -6,7 +6,7 @@ export let max = 100;
 export let defaultValue: number;
 </script>
 
-<div class="flex flex-row">
+<div class="w-full flex flex-row">
 	<div class="flex flex-col mr-2">
 		<p>{label}</p>
 		<p class="desc-text">{description}</p>

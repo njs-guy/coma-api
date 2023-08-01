@@ -9,7 +9,7 @@ import Toggle from "../settings/Toggle.svelte";
 	<TextInput label="Default save path" />
 	<Toggle
 		label="Don't ask where to save text files"
-		description="Text files will be auto saved to the default save path."
+		description="Text files will be saved to the default save path."
 		checked={false}
 	/>
 	<NumberInput

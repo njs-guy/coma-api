@@ -7,6 +7,8 @@ import GeneralSettingsPage from "./GeneralSettingsPage.svelte";
 onMount(() => {
 	changeSettingsTab("general");
 });
+// TODO: Generate settings divs from showPage data
+// TODO: Settings tab component
 </script>
 
 <dialog
@@ -34,18 +36,6 @@ onMount(() => {
 					<div
 						role="button"
 						tabindex="0"
-						on:click={() =>
-							changeSettingsTab(settingPages.something)}
-						on:keypress={() =>
-							changeSettingsTab(settingPages.something)}
-					>
-						Something
-					</div>
-				</li>
-				<li>
-					<div
-						role="button"
-						tabindex="0"
 						on:click={() => changeSettingsTab(settingPages.about)}
 						on:keypress={() =>
 							changeSettingsTab(settingPages.about)}
@@ -61,12 +51,6 @@ onMount(() => {
 					id="general-settings"
 				>
 					<GeneralSettingsPage />
-				</div>
-				<div
-					class="settings"
-					id="something-settings"
-				>
-					<p>Something else</p>
 				</div>
 				<div
 					class="settings"
