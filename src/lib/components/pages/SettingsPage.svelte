@@ -55,23 +55,25 @@ onMount(() => {
 				</li>
 			</ul>
 			<!-- Pages to be shown/hidden -->
-			<div
-				class="settings"
-				id="general-settings"
-			>
-				<GeneralSettingsPage />
-			</div>
-			<div
-				class="settings"
-				id="something-settings"
-			>
-				<p>Something else</p>
-			</div>
-			<div
-				class="settings"
-				id="about-settings"
-			>
-				<AboutPage />
+			<div class="w-full max-w-sm">
+				<div
+					class="settings"
+					id="general-settings"
+				>
+					<GeneralSettingsPage />
+				</div>
+				<div
+					class="settings"
+					id="something-settings"
+				>
+					<p>Something else</p>
+				</div>
+				<div
+					class="settings"
+					id="about-settings"
+				>
+					<AboutPage />
+				</div>
 			</div>
 		</div>
 		<button class="btn btn-sm btn-error">Close</button>
