@@ -14,5 +14,3 @@ yarn.lock
 
 # Use markdownlint for markdown formatting
 *.md
-
-src-tauri
