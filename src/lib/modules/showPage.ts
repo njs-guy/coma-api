@@ -1,7 +1,11 @@
-export const settingPages = {
+export const settingsPages = {
 	general: "general",
 	about: "about",
 };
+
+export function getSettingsPages() {
+	return Object.values(settingsPages);
+}
 
 export function showSettingsPage() {
 	console.log("show settings");
@@ -16,7 +20,7 @@ export function showSettingsPage() {
 }
 
 export function hideSettingsTabs() {
-	const tabs = [settingPages.general, settingPages.about];
+	const tabs = getSettingsPages();
 
 	for (const tab in tabs) {
 		const value: string = tabs[tab];

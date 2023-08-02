@@ -1,14 +1,15 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import { changeSettingsTab, settingPages } from "$lib/modules/showPage";
+import { changeSettingsTab, getSettingsPages } from "$lib/modules/showPage";
 import AboutPage from "./AboutPage.svelte";
 import GeneralSettingsPage from "./GeneralSettingsPage.svelte";
+import SettingsTab from "../settings/SettingsTab.svelte";
+
+const settingsTabs = getSettingsPages();
 
 onMount(() => {
 	changeSettingsTab("general");
 });
-// TODO: Generate settings divs from showPage data
-// TODO: Settings tab component
 </script>
 
 <dialog
@@ -21,28 +22,14 @@ onMount(() => {
 	>
 		<div class="flex flex-row">
 			<ul class="flex flex-col menu bg-base-200 w-auto rounded-box">
-				<li>
-					<div
-						role="button"
-						tabindex="0"
-						on:click={() => changeSettingsTab(settingPages.general)}
-						on:keypress={() =>
-							changeSettingsTab(settingPages.general)}
-					>
-						General
-					</div>
-				</li>
-				<li>
-					<div
-						role="button"
-						tabindex="0"
-						on:click={() => changeSettingsTab(settingPages.about)}
-						on:keypress={() =>
-							changeSettingsTab(settingPages.about)}
-					>
-						About
-					</div>
-				</li>
+				{#each settingsTabs as tab, i}
+					<li>
+						<SettingsTab
+							label={tab}
+							pageName={tab}
+						/>
+					</li>
+				{/each}
 			</ul>
 			<!-- Pages to be shown/hidden -->
 			<div class="w-full max-w-sm">

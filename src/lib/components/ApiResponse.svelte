@@ -11,7 +11,7 @@ import {
 import { showAlertBarTemp } from "$lib/stores/alertStore";
 import {
 	changeSettingsTab,
-	settingPages,
+	settingsPages,
 	showSettingsPage,
 } from "$lib/modules/showPage";
 
@@ -64,7 +64,7 @@ function onCopyToClipboardClick() {
 				class="info-res"
 				on:click={() => {
 					showSettingsPage();
-					changeSettingsTab(settingPages.general);
+					changeSettingsTab(settingsPages.general);
 				}}>Settings</button
 			>
 			<div class="dropdown">
