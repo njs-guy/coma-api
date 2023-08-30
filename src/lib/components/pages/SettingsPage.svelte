@@ -47,7 +47,10 @@ onMount(() => {
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-sm btn-error">Close</button>
+		<button
+			class="btn btn-sm btn-circle btn-error font-bold fixed top-2 right-2"
+			>X</button
+		>
 	</form>
 </dialog>
 
