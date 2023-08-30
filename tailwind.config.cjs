@@ -16,7 +16,7 @@ module.exports = {
 					"base-200": "#282c34",
 					"base-300": "#30363f",
 					"base-content": "#a0a8b7",
-					"primary": "#7e3992",
+					"primary": "#4fa6ed",
 					"--btn-text-case": "none",
 					".bg-deep": {
 						"background-color": "#181b20",
