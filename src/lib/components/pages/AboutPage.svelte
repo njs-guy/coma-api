@@ -16,6 +16,13 @@ onMount(async () => {
 	<p>A simple RESTful API viewer</p>
 	<p>v{appVersion}</p>
 	<p>
+		Open source under the <a
+			target="_blank"
+			href="https://github.com/njshockey/coma-api/blob/main/LICENSE.txt"
+			>Mozilla Public License 2.0</a
+		>
+	</p>
+	<p>
 		Check out the source code on <a
 			target="_blank"
 			href="https://github.com/njshockey/coma-api">Github</a
