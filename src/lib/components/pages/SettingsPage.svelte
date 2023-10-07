@@ -18,11 +18,11 @@ onMount(() => {
 >
 	<form
 		method="dialog"
-		class="modal-box p-2"
+		class="modal-box p-2 h-full max-h-96"
 	>
 		<div class="flex flex-row">
-			<ul class="flex flex-col menu bg-base-200 w-auto rounded-box">
-				{#each settingsTabs as tab, i}
+			<ul class="flex flex-col menu w-auto rounded-box gap-1">
+				{#each settingsTabs as tab}
 					<li>
 						<SettingsTab
 							label={tab}
@@ -48,7 +48,7 @@ onMount(() => {
 			</div>
 		</div>
 		<button
-			class="btn btn-sm btn-circle btn-error font-bold fixed top-2 right-2"
+			class="btn btn-sm btn-circle bg-base-300 font-bold fixed top-2 right-2"
 			>X</button
 		>
 	</form>
