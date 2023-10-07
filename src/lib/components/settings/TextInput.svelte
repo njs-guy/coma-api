@@ -4,7 +4,7 @@ export let description = "";
 </script>
 
 <div class="w-full flex flex-col">
-	<p>{label}</p>
+	<p class="settings-label">{label}</p>
 	<p class="desc-text">{description}</p>
 	<input
 		class="input input-bordered input-sm w-full bg-deep"

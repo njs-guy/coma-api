@@ -12,8 +12,8 @@ onMount(async () => {
 </script>
 
 <div class="about-page">
-	<h2>Coma API</h2>
-	<p>A simple RESTful API viewer</p>
+	<h2 class="settings-label">Coma API</h2>
+	<p class="settings-label">A simple RESTful API viewer</p>
 	<p>v{appVersion}</p>
 	<p>
 		Open source under the <a

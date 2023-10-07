@@ -38,6 +38,14 @@ module.exports = {
 						"color": "#4fa6ed",
 						"font-weight": "bold",
 					},
+					".desc-text": {
+						"color": "#9ca3af",
+						"font-size": "0.75rem",
+						"line-height": "1rem",
+					},
+					".settings-label": {
+						color: "#e6e6e6",
+					},
 					"::placeholder": {
 						color: "#535965",
 					},

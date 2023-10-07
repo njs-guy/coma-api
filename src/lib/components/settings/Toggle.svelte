@@ -6,7 +6,7 @@ export let checked: boolean;
 
 <div class="w-full cursor-pointer flex flex-row justify-between p-0">
 	<div class="form-control">
-		<span>{label}</span>
+		<span class="settings-label">{label}</span>
 		<span class="desc-text">{description}</span>
 	</div>
 	<input

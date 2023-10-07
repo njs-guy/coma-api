@@ -8,7 +8,7 @@ export let defaultValue: number;
 
 <div class="w-full flex flex-row">
 	<div class="flex flex-col mr-2">
-		<p>{label}</p>
+		<p class="settings-label">{label}</p>
 		<p class="desc-text">{description}</p>
 	</div>
 	<input

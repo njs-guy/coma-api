@@ -5,7 +5,7 @@ import Toggle from "../settings/Toggle.svelte";
 </script>
 
 <div class="general-settings-page flex flex-col gap-3">
-	<h2>General</h2>
+	<h2 class="settings-label">General</h2>
 	<TextInput label="Default save path" />
 	<Toggle
 		label="Don't ask where to save text files"
