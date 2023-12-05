@@ -1,11 +1,13 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import { reqMethod, sendRequest, sendRequestJson } from "$lib/modules/requests";
+import JsonInput from "$lib/components/JsonInput.svelte";
 
 let requestInput: string;
 let requestType: string;
 let dataInput: string;
 let showDataInput: boolean;
+let defaultDataInput = "json";
 
 function updateDataInputState() {
 	const dataInput = document.querySelector(
@@ -49,14 +51,6 @@ function handleRequest() {
 			break;
 	}
 }
-
-function onShowDataInputToggle() {
-	updateDataInputState();
-}
-
-onMount(() => {
-	updateDataInputState();
-});
 </script>
 
 <main class="flex flex-col flex-grow gap-2 h-full">
@@ -88,27 +82,49 @@ onMount(() => {
 			</div>
 		</div>
 	</div>
-	<div class="form-control">
-		<label class="label cursor-pointer">
-			<span class="label-text">Show data input</span>
-			<input
-				type="checkbox"
-				class="toggle toggle-primary"
-				id="data-input-toggle"
-				bind:checked={showDataInput}
-				on:change={onShowDataInputToggle}
-			/>
-		</label>
-	</div>
-	<textarea
-		class="data-input-textarea textarea border-color flex-grow w-full h-full p-1 bg-deep mono focus:outline-none"
-		placeholder="JSON data"
-		bind:value={dataInput}
-	/>
-</main>
+	<div
+		role="tablist"
+		class="tabs tabs-bordered"
+	>
+		<input
+			type="radio"
+			name="input-tabs"
+			role="tab"
+			class="tab"
+			aria-label="None"
+			checked
+		/>
+		<div
+			role="tabpanel"
+			class="tab-content pt-2"
+		></div>
 
-<style scoped>
-.data-input-textarea {
-	resize: none;
-}
-</style>
+		<input
+			type="radio"
+			name="input-tabs"
+			role="tab"
+			class="tab"
+			aria-label="JSON"
+		/>
+		<div
+			role="tabpanel"
+			class="tab-content pt-2"
+		>
+			<JsonInput />
+		</div>
+
+		<input
+			type="radio"
+			name="input-tabs"
+			role="tab"
+			class="tab"
+			aria-label="Query"
+		/>
+		<div
+			role="tabpanel"
+			class="tab-content pt-2"
+		>
+			Query table
+		</div>
+	</div>
+</main>
